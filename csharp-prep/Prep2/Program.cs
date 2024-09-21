@@ -4,25 +4,26 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.Write("Please enter your grade percentage: ");
-        String valueFromUser = Console.ReadLine();
-        int percent = int.Parse(valueFromUser);
-
+        // Ask for user input
+        Console.Write("Enter your grade percentage: ");
+        int percentage = int.Parse(Console.ReadLine());
         string letter = "";
+        string sign = "";
 
-        if (percent >= 90)
+        // Determine letter grade
+        if (percentage >= 90)
         {
             letter = "A";
         }
-        else if (percent >= 80)
+        else if (percentage >= 80)
         {
             letter = "B";
         }
-        else if (percent >= 70)
+        else if (percentage >= 70)
         {
             letter = "C";
         }
-        else if (percent >= 60)
+        else if (percentage >= 60)
         {
             letter = "D";
         }
@@ -31,32 +32,32 @@ class Program
             letter = "F";
         }
 
-        Console.WriteLine($"Your grade is: {letter}");
+        // Add sign (+ or -) to the letter grade, excluding A and F
+        if (letter != "A" && letter != "F")
         {
-            
-            if (percent >= 70)
+            int lastDigit = percentage % 10;
+
+            if (lastDigit >= 7)
             {
-                Console.WriteLine("You Passed!");
+                sign = "+";
             }
-            else
+            else if (lastDigit < 3)
             {
-                Console.WriteLine("Better luck next time!");
+                sign = "-";
             }
         }
-       /*int x = int.Parse(valueFromUser);
-       int y = 2;
 
-       if (x > y)
-       {
-        Console.WriteLine("x is greater than y");
-       }
-       else if (x < y)
-       {
-        Console.WriteLine("x is less than y");
-       }
-       else
-       {
-        Console.WriteLine("Equal");
-       }*/
+        // Print letter grade with sign
+        Console.WriteLine($"Your letter grade is: {letter}{sign}");
+
+        // Determine if the user passed the course
+        if (percentage >= 70)
+        {
+            Console.WriteLine("Congratulations! You passed the course.");
+        }
+        else
+        {
+            Console.WriteLine("Better luck next time.");
+        }
     }
 }
