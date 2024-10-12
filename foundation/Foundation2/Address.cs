@@ -18,7 +18,8 @@ public class Address
         return country == "USA";
     }
 
-    public string ToString()
+    // Add override keyword to properly override the base class method
+    public override string ToString()
     {
         return $"{streetAddress}\n{city}, {stateProvince}\n{country}";
     }
